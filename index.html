@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+	<link rel="stylesheet" href="styl.css">
+    <title>Śnieżynki Na Zimowej Stronie</title>
+	<h1>Witaj na Zimowej Stronie!</h1>
+	<img src="ludzik.png" alt="Zimowy krajobraz" width="800">
+</head>
+<body>
+    <div id="counter"></div>
+    <div id="snowflakesContainer"></div>
+
+    <script>
+
+        let visitCount = parseInt(localStorage.getItem('visitCount')) || 0;
+        visitCount++;
+        localStorage.setItem('visitCount', visitCount);
+        document.getElementById('counter').textContent = visitCount;
+
+        const snowflakesContainer = document.getElementById('snowflakesContainer');
+        const numberOfSnowflakes = 50;
+
+        for (let i = 0; i < numberOfSnowflakes; i++) {
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('snowflake');
+            snowflake.textContent = '❄';
+             
+            const screenWidth = window.innerWidth;
+            const randomPosition = Math.random() * screenWidth;
+            const randomDelay = Math.random() * 10; 
+            
+            snowflake.style.left = `${randomPosition}px`;
+            snowflake.style.animationDuration = `${Math.random() * 3 + 2}s`;
+            snowflake.style.animationDelay = `${randomDelay}s`;
+
+            snowflakesContainer.appendChild(snowflake);
+        }
+    </script>
+</body>
+</html>
